@@ -1,7 +1,7 @@
 import re
 
 
-def validatePassword(email):
+def validateEmail(email):
     regex = re.compile('^[a-zA-Z_.0-9]+[@]\w+[.]{1,1}(com|edu|in|us|edu\.in|org)$')
     return bool(re.match(regex,email))
 
