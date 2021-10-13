@@ -119,6 +119,7 @@ def add_highlights_window():
 master = Tk()
 master.grid_columnconfigure(0,weight=1)
 master.grid_rowconfigure(0,weight=1)
+master.title("TK Highlight")
 
 master.geometry("500x350")
 master.resizable(False, False)
