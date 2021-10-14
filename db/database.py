@@ -3,7 +3,7 @@ import sqlite3
 
 class BookHighlightsDB:
     def __init__(self) -> None:
-        self.connection = sqlite3.connect('book-highlights.db')
+        self.connection = sqlite3.connect('db/book-highlights.db')
         self.cursor = self.connection.cursor()
 
         self.cursor.execute('PRAGMA foreign_keys=on')
