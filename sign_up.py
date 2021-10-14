@@ -2,12 +2,12 @@ from tkinter import *
 
 
 class SignUp:
-    
     def __init__(self):
         self.root = Tk()
         self.root.configure(background="light grey")
         self.root.title("Sign Up")
-        self.root.geometry("500x300")
+        self.root.geometry("390x300")
+        self.root.resizable(0, 0)
 
         self.user_name = Label(self.root, text = "Enter Name").place(x = 20, y = 60)
         self.user_name_input_area = Entry(self.root, width = 30).place(x = 180,y = 60)
