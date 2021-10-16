@@ -1,5 +1,6 @@
 from tkinter import *
 from db.database import BookHighlightsDB
+from add_books import *
 
 class SignIn:
     
@@ -32,7 +33,9 @@ class SignIn:
             print('Could not find user')
         else:
             if expected_password == password:
-                print('Success')
+                self.root.destroy()
+                Books().start()
+                
             else:
                 print('Failure')
 
