@@ -67,6 +67,17 @@ class BookHighlightsDB:
             return password[0]
         else:
             return None
+    
+
+    def addBook(self, title, author, user):
+        self.cursor.execute("INSERT INTO books (title, author, user) VALUES (?, ?, ?)", \
+                                               (title, author, user))
+        self.connection.commit()
+
+
+    def getBooks(self, user):
+        self.cursor.execute(f"SELECT title, author FROM books WHERE user = ?", (user,))
+        return self.cursor.fetchall()
 
 
     def __del__(self) -> None:
@@ -80,3 +91,10 @@ if __name__ == '__main__':
 
     # print(db.getPassword('javeri.rushabh45@gmail.com'))
     # print(db.getPassword('javeri.rushabh45'))
+
+    # db.addBook('Sapiens', 'Yuval Harari', 1)
+    # db.addBook('Why We Sleep', 'Matthew Walker', 1)
+    # db.addBook('The Ninth Pawn of the White', 'Vijay Fafat', 1)
+    # db.addBook('Atomic Habits', 'James Clear', 1)
+
+    print(db.getBooks(1))
