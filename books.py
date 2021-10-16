@@ -1,12 +1,16 @@
 from tkinter import *
+from db.database import *
 
 class Books:
     
-    def __init__(self):
+    def __init__(self,email):
+        self.user_email = email
+        self.db = BookHighlightsDB()
         self.root = Tk()
         self.root.configure(background="light grey")
         self.root.title("Books")
         self.root.geometry("470x520")
+        self.root.resizable(0,0)
 
         self.book_title = Label(self.root, text = "Enter Book Title")
         self.book_title.place(x = 20, y = 40)
@@ -28,6 +32,7 @@ class Books:
         self.books_frame.place(x=10, y=160)
         self.books_list.grid(row=5,column=3, columnspan=4)
         self.scrollbar.grid(sticky=W)
+        self.fetch_books()
 
         self.add_hlt_btn = Button(self.root, text="Add Highlights").place(x=180,y=440)
         self.del_book_btn = Button(self.root, text="Delete Book").place(x=185,y=480)
@@ -36,6 +41,15 @@ class Books:
         self.root.mainloop()
 
     def fetch_books(self):
-        pass
+        self.books_list.delete(0,END)
+        userid = self.db.getUserID(self.user_email)
+        self.books = self.db.getBooks(userid)
+        c = 1
+        for book in self.books:
+            self.books_list.insert(END,str(c)+" "+book[0])
+            c += 1
+
+        
+        
 
 

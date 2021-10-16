@@ -1,6 +1,6 @@
 from tkinter import *
 from db.database import BookHighlightsDB
-from add_books import *
+from books import *
 
 class SignIn:
     
@@ -12,7 +12,8 @@ class SignIn:
         self.root.title("Sign In")
         self.root.geometry("500x300")
 
-        self.email = Label(self.root, text = "Enter Email").place(x = 20, y = 100)
+        self.email = Label(self.root, text = "Enter Email")
+        self.email.place(x = 20, y = 100)
         self.email_input_area = Entry(self.root, width = 30)
         self.email_input_area.place(x = 180,y = 100)
 
@@ -33,8 +34,9 @@ class SignIn:
             print('Could not find user')
         else:
             if expected_password == password:
+                email = self.email_input_area.get()
                 self.root.destroy()
-                Books().start()
+                Books(email).start()
                 
             else:
                 print('Failure')
