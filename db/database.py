@@ -89,9 +89,9 @@ class BookHighlightsDB:
 
 if __name__ == '__main__':
     db = BookHighlightsDB()
-    db.addUser('Rushabh Javeri', 'javeri.rushabh45@gmail.com', 'secret123')
-    db.addUser('Om Kamath', 'om.kamath43@nmims.edu.in', 'ilovetech')
-    db.addUser('Varun Nair', 'varunanil03@gmail.com', 'animeop')
+    # db.addUser('Rushabh Javeri', 'javeri.rushabh45@gmail.com', 'secret123')
+    # db.addUser('Om Kamath', 'om.kamath43@nmims.edu.in', 'ilovetech')
+    # db.addUser('Varun Nair', 'varunanil03@gmail.com', 'animeop')
 
     # print(db.getPassword('javeri.rushabh45@gmail.com'))
     # print(db.getPassword('javeri.rushabh45'))
@@ -101,4 +101,9 @@ if __name__ == '__main__':
     # db.addBook('The Ninth Pawn of the White', 'Vijay Fafat', 1)
     # db.addBook('Atomic Habits', 'James Clear', 1)
 
-    print(db.getBooks(1))
+    # db.addBook('Ikigai', 'Hector Garcia', 2)
+    # db.addBook('Man\'s search for Meaning', 'Victor Frankl', 2)
+
+    # db.addBook('To Kill a Mockingbird', 'Harper Lee', 3)
+
+    print(db.getBooks(3))
