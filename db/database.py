@@ -84,18 +84,19 @@ class BookHighlightsDB:
         self.cursor.execute('DELETE FROM books WHERE book = ?', (book,))
         self.connection.commit()
 
-    def addHighlights(self, highlight, page, book):
+    def addHighlight(self, highlight, page, book):
         self.cursor.execute(
             'INSERT INTO highlights (highlight, page, book) VALUES (?, ?, ?)', (highlight, page, book))
         self.connection.commit()
 
     def getHighlights(self, book):
         self.cursor.execute(
-            'SELECT highlight, page FROM highlights WHERE book = ?', (book,))
+            'SELECT id, highlight, page FROM highlights WHERE book = ?', (book,))
         return self.cursor.fetchall()
-    
+
     def deleteHighlight(self, highlight):
-        self.cursor.execute('DELETE FROM highlights WHERE id = ?', (highlight,))
+        self.cursor.execute(
+            'DELETE FROM highlights WHERE id = ?', (highlight,))
         self.connection.commit()
 
     def getUserID(self, email):
@@ -126,8 +127,11 @@ if __name__ == '__main__':
 
     # db.addBook('To Kill a Mockingbird', 'Harper Lee', 3)
 
-    db.addHighlights('Wow awesome', 2, 2)
-    db.addHighlights('Wow superb', 3, 2)
-    db.addHighlights('Wow too good', 17, 2)
+    # db.addHighlight('Wow awesome', 2, 2)
+    # db.addHighlight('Wow superb', 3, 2)
+    # db.addHighlight('Wow too good', 17, 2)
+
+    # db.addHighlight(
+    #     'oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 200, 2)
 
     # print(db.getBooks(1))

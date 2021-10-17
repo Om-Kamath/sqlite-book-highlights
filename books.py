@@ -52,21 +52,21 @@ class Books:
         self.books_list.grid(row=1, column=1)
         self.scrollbar.grid(row=1, column=2, sticky=NS)
 
-        self.fetch_books()
+        self.fetchBooks()
 
-        self.see_hlt_btn = Button(self.root, text="See Highlights", command=lambda: self.seeHighlights(self.books_list.curselection()))
+        self.see_hlt_btn = Button(self.root, text="See Highlights",
+                                  command=lambda: self.seeHighlights(self.books_list.curselection()))
         self.see_hlt_btn.place(x=180, y=510)
 
         self.del_book_btn = Button(self.root, text="Delete Book")
         self.del_book_btn.place(x=187, y=550)
-    
+
     def seeHighlights(self, selected):
         if selected:
             # Starting Highlights window and passing it book ID
             Highlights(self.books[selected[0]][0]).start()
 
-
-    def fetch_books(self):
+    def fetchBooks(self):
         self.books_list.delete(0, END)
         self.books = self.db.getBooks(self.user_id)
         for index, book in enumerate(self.books):
