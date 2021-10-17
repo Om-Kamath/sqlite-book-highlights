@@ -81,7 +81,7 @@ class BookHighlightsDB:
 
     def deleteBook(self, book):
         self.cursor.execute('DELETE FROM highlights WHERE book = ?', (book,))
-        self.cursor.execute('DELETE FROM books WHERE book = ?', (book,))
+        self.cursor.execute('DELETE FROM books WHERE id = ?', (book,))
         self.connection.commit()
 
     def addHighlight(self, highlight, page, book):
