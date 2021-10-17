@@ -33,7 +33,7 @@ class Highlights:
         self.page_no_input_area.place(x=220, y=130)
 
         self.add_hlt_btn = Button(
-            self.root, text="Add Highlight").place(x=180, y=190)
+            self.root, text="Add Highlight",command=self.addHighlights).place(x=180, y=190)
 
         self.hlts_frame = LabelFrame(self.root, text="Highlights")
         self.hlts_list = Listbox(self.hlts_frame, width=70, height=12)
@@ -62,6 +62,7 @@ class Highlights:
 
     def fetchHighlights(self):
         self.hlts_list.delete(0, END)
+        self.highlights = self.db.getHighlights(self.book)
         for index, highlight in enumerate(self.highlights):
             hlt = highlight[1]
 
@@ -75,9 +76,20 @@ class Highlights:
         if selected:
             HighlightsView(self.highlights[selected[0]]).start()
 
+    def addHighlights(self):
+
+        highlight = self.book_highlight_input_area.get().strip()
+        page_no = int(self.page_no_input_area.get())
+        if highlight != '' and self.page_no_input_area.get() != '' :
+            self.db.addHighlight(highlight=highlight,page=page_no,book=self.book)
+            self.fetchHighlights()
+
+
+
+
     def start(self):
         self.root.mainloop()
 
 
 if __name__ == '__main__':
-    Highlights(2).start()
+    Highlights(3).start()
