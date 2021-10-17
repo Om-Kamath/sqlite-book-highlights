@@ -1,5 +1,7 @@
 from tkinter import *
 from db.database import *
+from highlights import Highlights
+from validate import validateBookTitle, validateName
 
 
 class Books:
@@ -33,6 +35,10 @@ class Books:
         self.author_name_input_area = Entry(self.root, width=30)
         self.author_name_input_area.place(x=225, y=130)
 
+        self.error_label = Label(self.root, font=(
+            "Arial", 10), fg="red", bg="light grey")
+        self.error_label.place(y=160)
+
         self.add_book_btn = Button(
             self.root, text="Add Book", command=self.add_book)
         self.add_book_btn.place(x=200, y=190)
@@ -42,33 +48,49 @@ class Books:
         self.scrollbar = Scrollbar(self.books_frame)
         self.books_list.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.books_list.yview)
-        self.books_frame.place(x=10, y=230)
+        self.books_frame.place(x=10, y=250)
         self.books_list.grid(row=1, column=1)
         self.scrollbar.grid(row=1, column=2, sticky=NS)
 
         self.fetch_books()
 
-        self.see_hlt_btn = Button(self.root, text="See Highlights")
+        self.see_hlt_btn = Button(self.root, text="See Highlights", command=lambda: self.seeHighlights(self.books_list.curselection()))
         self.see_hlt_btn.place(x=180, y=510)
 
         self.del_book_btn = Button(self.root, text="Delete Book")
         self.del_book_btn.place(x=187, y=550)
+    
+    def seeHighlights(self, selected):
+        if selected:
+            # Starting Highlights window and passing it book ID
+            Highlights(self.books[selected[0]][0]).start()
+
 
     def fetch_books(self):
         self.books_list.delete(0, END)
         self.books = self.db.getBooks(self.user_id)
         for index, book in enumerate(self.books):
-            self.books_list.insert(END, str(index + 1) + ". " + book[0] + " - " + book[1])
-    
-    # The 'T' in Tkinter stands for Trash
+            self.books_list.insert(
+                END, str(index + 1) + ". " + book[1] + " - " + book[2])
 
     def add_book(self):
-        author = self.author_name_input_area.get()
-        title = self.book_title_input_area.get()
-        self.db.addBook(title, author, self.user_id)
-        self.book_title_input_area.delete(0, END)
-        self.author_name_input_area.delete(0, END)
-        self.fetch_books()
+        author = self.author_name_input_area.get().strip().title()
+        title = self.book_title_input_area.get().strip()
+
+        if author == '':
+            author = 'Anonymous'
+
+        if not validateBookTitle(title):
+            self.error_label.config(text="Invalid Title!")
+            self.error_label.place(x=194)
+        elif not validateName(author):
+            self.error_label.config(text="Invalid author name!")
+            self.error_label.place(x=170)
+        else:
+            self.db.addBook(title, author, self.user_id)
+            self.book_title_input_area.delete(0, END)
+            self.author_name_input_area.delete(0, END)
+            self.fetch_books()
 
     def start(self):
         self.root.mainloop()

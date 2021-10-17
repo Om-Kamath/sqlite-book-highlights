@@ -61,13 +61,12 @@ class SignUp:
         sign_in.SignIn().start()
 
     def signUpSubmit(self):
-        name = self.name_input_area.get()
-        email = self.email_input_area.get()
-        password = self.user_pass_input_area.get()
-        re_password = self.user_repass_input_area.get()
+        name = self.name_input_area.get().strip()
+        email = self.email_input_area.get().strip()
+        password = self.user_pass_input_area.get().strip()
+        re_password = self.user_repass_input_area.get().strip()
 
         # TODO: handle state
-        # TODO: display message using label
         if not validateName(name):
             self.error_label.config(
                 text="Name must be min. 2 characters long and must contain alphabets only")
