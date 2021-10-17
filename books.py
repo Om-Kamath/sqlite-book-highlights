@@ -58,7 +58,8 @@ class Books:
                                   command=lambda: self.seeHighlights(self.books_list.curselection()))
         self.see_hlt_btn.place(x=180, y=510)
 
-        self.del_book_btn = Button(self.root, text="Delete Book",command= lambda: self.deleteSelectedBook(self.books_list.curselection()))
+        self.del_book_btn = Button(self.root, text="Delete Book", command=lambda: self.deleteSelectedBook(
+            self.books_list.curselection()))
         self.del_book_btn.place(x=187, y=550)
 
     def seeHighlights(self, selected):
@@ -90,17 +91,15 @@ class Books:
             self.db.addBook(title, author, self.user_id)
             self.book_title_input_area.delete(0, END)
             self.author_name_input_area.delete(0, END)
-            self.fetch_books()
+            self.fetchBooks()
 
     def start(self):
         self.root.mainloop()
 
-    def deleteSelectedBook(self,selected):
+    def deleteSelectedBook(self, selected):
         if selected:
             self.db.deleteBook(self.books[selected[0]][0])
             self.fetchBooks()
-
-        
 
 
 if __name__ == '__main__':

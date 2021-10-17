@@ -131,7 +131,4 @@ if __name__ == '__main__':
     # db.addHighlight('Wow superb', 3, 2)
     # db.addHighlight('Wow too good', 17, 2)
 
-    # db.addHighlight(
-    #     'oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 200, 2)
-
     # print(db.getBooks(1))

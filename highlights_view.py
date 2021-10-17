@@ -9,6 +9,7 @@ class HighlightsView:
         self.root.config(bg="light grey")
         self.root.geometry('320x325+550+250')
         self.root.resizable(0, 0)
+        self.root.after(1, lambda: self.root.focus_force())
 
         self.hlt = Text(self.root, width=35, height=19, padx=10, pady=10)
         self.hlt.grid(row=1, column=1,sticky=NSEW)
