@@ -14,6 +14,7 @@ class SignUp:
         self.root.title("Sign Up")
         self.root.geometry("370x400+550+200")
         self.root.resizable(0, 0)
+        self.root.after(1, lambda: self.root.focus_force())
 
         self.h1 = Label(self.root, text="HighlightR",
                         font=('Arial', 18, 'bold'), bg="light grey")
@@ -23,6 +24,7 @@ class SignUp:
         self.name.place(x=20, y=100)
         self.name_input_area = Entry(self.root, width=30)
         self.name_input_area.place(x=160, y=100)
+        self.name_input_area.focus()
 
         self.email = Label(self.root, text="Enter Email", bg="light grey")
         self.email.place(x=20, y=140)

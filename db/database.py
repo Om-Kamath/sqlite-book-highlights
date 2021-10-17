@@ -23,7 +23,8 @@ class BookHighlightsDB:
             pass
 
         # To make accessing data using email faster
-        self.cursor.execute("CREATE UNIQUE INDEX IF NOT EXISTS email_index ON users (email_id)")
+        self.cursor.execute(
+            "CREATE UNIQUE INDEX IF NOT EXISTS email_index ON users (email_id)")
 
         try:
             self.cursor.execute("""\
@@ -51,41 +52,40 @@ class BookHighlightsDB:
             self.connection.commit()
         except sqlite3.OperationalError:
             pass
-    
-    
+
     def addUser(self, name, email_id, password):
-        self.cursor.execute("INSERT INTO users (name, email_id, password) VALUES (?, ?, ?)", \
-                                               (name, email_id, password))
+        self.cursor.execute("INSERT INTO users (name, email_id, password) VALUES (?, ?, ?)",
+                            (name, email_id, password))
         self.connection.commit()
-    
 
     def getPassword(self, email_id):
-        self.cursor.execute("SELECT password FROM users WHERE email_id = ?", (email_id, ))
+        self.cursor.execute(
+            "SELECT password FROM users WHERE email_id = ?", (email_id, ))
         password = self.cursor.fetchone()
-        
+
         if password:
             return password[0]
         else:
             return None
-    
 
     def addBook(self, title, author, user):
-        self.cursor.execute("INSERT INTO books (title, author, user) VALUES (?, ?, ?)", \
-                                               (title, author, user))
+        self.cursor.execute("INSERT INTO books (title, author, user) VALUES (?, ?, ?)",
+                            (title, author, user))
         self.connection.commit()
 
-
     def getBooks(self, user):
-        self.cursor.execute(f"SELECT title, author FROM books WHERE user = ?", (user,))
+        self.cursor.execute(
+            f"SELECT title, author FROM books WHERE user = ?", (user,))
         return self.cursor.fetchall()
 
-    def getUserID(self,email):
-        self.cursor.execute(f"SELECT id FROM users WHERE email_id = ?",(email,))
+    def getUserID(self, email):
+        self.cursor.execute(
+            f"SELECT id FROM users WHERE email_id = ?", (email,))
         return self.cursor.fetchone()[0]
-
 
     def __del__(self) -> None:
         self.connection.close()
+
 
 if __name__ == '__main__':
     db = BookHighlightsDB()
