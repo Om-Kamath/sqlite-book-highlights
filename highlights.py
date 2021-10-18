@@ -1,6 +1,7 @@
 from tkinter import *
 from db.database import *
 from highlights_view import HighlightsView
+from properties import HEADER
 
 
 class Highlights:
@@ -9,17 +10,18 @@ class Highlights:
 
         self.root = Tk()
         self.root.configure(background="light grey")
-        self.root.title("Highlights")
+        self.root.title("Resonotes - Highlights")
         self.root.geometry("470x570+570+200")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
+        self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
 
         self.book = book
         self.highlights = self.db.getHighlights(book)
 
-        self.h1 = Label(self.root, text="Resonotes",
-                        font=('Arial', 18, 'bold'), bg="light grey")
-        self.h1.place(x=170, y=30)
+        self.h1 = Label(self.root, text="RESONOTES",
+                        font=HEADER, bg="light grey")
+        self.h1.place(x=160, y=30)
 
         self.book_highlight = Label(
             self.root, text="Enter Highlight", bg="light grey")

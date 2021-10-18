@@ -1,4 +1,5 @@
 from tkinter import *
+from properties import HEADER
 from validate import validateName, validateEmail, validatePassword
 from db.database import BookHighlightsDB
 import sign_in
@@ -11,14 +12,15 @@ class SignUp:
 
         self.root = Tk()
         self.root.configure(background="light grey")
-        self.root.title("Sign Up")
+        self.root.title("Resonotes - Sign Up")
         self.root.geometry("370x400+550+200")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
+        self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
 
-        self.h1 = Label(self.root, text="Resonotes",
-                        font=('Arial', 18, 'bold'), bg="light grey")
-        self.h1.place(x=110, y=30)
+        self.h1 = Label(self.root, text="RESONOTES",
+                        font=HEADER, bg="light grey")
+        self.h1.place(x=100, y=30)
 
         self.name = Label(self.root, text="Enter Name", bg="light grey")
         self.name.place(x=20, y=100)

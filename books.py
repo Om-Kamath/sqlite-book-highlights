@@ -1,6 +1,7 @@
 from tkinter import *
 from db.database import *
 from highlights import Highlights
+from properties import HEADER
 from validate import validateBookTitle, validateName
 
 
@@ -13,14 +14,15 @@ class Books:
 
         self.root = Tk()
         self.root.configure(background="light grey")
-        self.root.title("Books")
+        self.root.title("Resonotes - Books")
         self.root.geometry("470x600+550+100")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
+        self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
 
-        self.h1 = Label(self.root, text="Resonotes",
-                        font=('Arial', 18, 'bold'), bg="light grey")
-        self.h1.place(x=170, y=30)
+        self.h1 = Label(self.root, text="RESONOTES",
+                        font=HEADER, bg="light grey")
+        self.h1.place(x=160, y=30)
 
         self.book_title = Label(
             self.root, text="Enter Book Title", bg="light grey")
