@@ -32,7 +32,7 @@ class HighlightsView:
         scrollbar.config(command=self.hlt.yview)
 
     def setHighlight(self):
-        value = self.hlt.get('1.0', END)
+        value = self.hlt.get('1.0', END).strip()
         self.db.updateHighlight(value, self.highlight_id)
         self.update_highlights()
         self.root.destroy()
