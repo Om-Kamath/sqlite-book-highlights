@@ -1,7 +1,8 @@
 from tkinter import *
+from tkinter import font
 from db.database import *
 from highlights import Highlights
-from properties import HEADER
+from properties import BUTTON_FONT, ERROR_FONT, HEADER, LABEL_FONT,LISTBOX_FONT
 from validate import validateBookTitle, validateName
 
 
@@ -15,7 +16,7 @@ class Books:
         self.root = Tk()
         self.root.configure(background="light grey")
         self.root.title("Resonotes - Books")
-        self.root.geometry("470x600+550+100")
+        self.root.geometry("480x600+550+100")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
         self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
@@ -25,28 +26,27 @@ class Books:
         self.h1.place(x=160, y=30)
 
         self.book_title = Label(
-            self.root, text="Enter Book Title", bg="light grey")
+            self.root, text="Enter Book Title", bg="light grey", font=LABEL_FONT)
         self.book_title.place(x=65, y=90)
-        self.book_title_input_area = Entry(self.root, width=30)
+        self.book_title_input_area = Entry(self.root, width=26, borderwidth=5,relief=FLAT, font=LABEL_FONT)
         self.book_title_input_area.place(x=225, y=90)
         self.book_title_input_area.focus()
 
         self.author_name = Label(
-            self.root, text="Enter author name", bg="light grey")
+            self.root, text="Enter author name", bg="light grey", font=LABEL_FONT)
         self.author_name.place(x=65, y=130)
-        self.author_name_input_area = Entry(self.root, width=30)
+        self.author_name_input_area = Entry(self.root, width=26, borderwidth=5,relief=FLAT, font=LABEL_FONT)
         self.author_name_input_area.place(x=225, y=130)
 
-        self.error_label = Label(self.root, font=(
-            "Arial", 10), fg="red", bg="light grey")
-        self.error_label.place(y=160)
+        self.error_label = Label(self.root,font=ERROR_FONT, fg="red", bg="light grey")
+        self.error_label.place(y=170)
 
         self.add_book_btn = Button(
-            self.root, text="Add Book", command=self.add_book)
-        self.add_book_btn.place(x=200, y=190)
+            self.root, text="Add Book", font=BUTTON_FONT,padx=8, command=self.add_book)
+        self.add_book_btn.place(x=200, y=200)
 
         self.books_frame = LabelFrame(self.root, text="Books")
-        self.books_list = Listbox(self.books_frame, width=70, height=12)
+        self.books_list = Listbox(self.books_frame, width=54, height=12,font=LISTBOX_FONT, borderwidth=5,relief=FLAT)
         self.scrollbar = Scrollbar(self.books_frame)
         self.books_list.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.books_list.yview)
@@ -56,11 +56,11 @@ class Books:
 
         self.fetchBooks()
 
-        self.see_hlt_btn = Button(self.root, text="See Highlights",
+        self.see_hlt_btn = Button(self.root, font=BUTTON_FONT,padx=8, text="See Highlights",
                                   command=lambda: self.seeHighlights(self.books_list.curselection()))
         self.see_hlt_btn.place(x=180, y=510)
 
-        self.del_book_btn = Button(self.root, text="Delete Book", command=lambda: self.deleteSelectedBook(
+        self.del_book_btn = Button(self.root, text="Delete Book", font=BUTTON_FONT,padx=8, command=lambda: self.deleteSelectedBook(
             self.books_list.curselection()))
         self.del_book_btn.place(x=187, y=550)
 
@@ -85,10 +85,10 @@ class Books:
 
         if not validateBookTitle(title):
             self.error_label.config(text="Invalid Title!")
-            self.error_label.place(x=194)
+            self.error_label.place(x=199)
         elif not validateName(author):
             self.error_label.config(text="Invalid author name!")
-            self.error_label.place(x=170)
+            self.error_label.place(x=175)
         else:
             self.db.addBook(title, author, self.user_id)
             self.book_title_input_area.delete(0, END)
@@ -105,4 +105,4 @@ class Books:
 
 
 if __name__ == '__main__':
-    Books('javeri.rushabh45@gmail.com').start()
+    Books('drumil.kotecha@nmims.edu').start()

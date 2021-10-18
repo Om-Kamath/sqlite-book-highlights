@@ -1,8 +1,9 @@
 from tkinter import *
+from tkinter import font
 from db.database import BookHighlightsDB
 from books import *
 import sign_up
-from properties import HEADER, LABEL_FONT
+from properties import BUTTON_FONT, ERROR_FONT, HEADER, LABEL_FONT, LINK_FONT
 
 
 class SignIn:
@@ -22,29 +23,28 @@ class SignIn:
         self.h1.place(x=100, y=30)
 
         self.email = Label(self.root, text="Enter Email", font=LABEL_FONT, bg="light grey")
-        self.email.place(x=20, y=100)
+        self.email.place(x=20, y=105)
 
-        self.email_input_area = Entry(self.root, width=30)
+        self.email_input_area = Entry(self.root, width=22, borderwidth=5,relief=FLAT, font=LABEL_FONT)
         self.email_input_area.place(x=130, y=100)
         # auto-focus the email input
         self.email_input_area.focus()
 
         self.user_pass = Label(
             self.root, text="Enter Password", font=LABEL_FONT, bg="light grey")
-        self.user_pass.place(x=20, y=140)
-        self.user_pass_input_area = Entry(self.root, width=30, show='*')
+        self.user_pass.place(x=20, y=145)
+        self.user_pass_input_area = Entry(self.root, width=22, borderwidth=5,relief=FLAT, font=LABEL_FONT, show='*')
         self.user_pass_input_area.place(x=130, y=140)
 
-        self.error_label = Label(self.root, font=(
-            "Arial", 10), fg="red", bg="light grey")
-        self.error_label.place(y=175)
+        self.error_label = Label(self.root, font= ERROR_FONT, fg="red", bg="light grey")
+        self.error_label.place(y=185)
 
         self.signin_btn = Button(
-            self.root, text="Sign In", command=self.signInSubmit)
-        self.signin_btn.place(x=145, y=240)
+            self.root, text="Sign In",font=BUTTON_FONT,padx=8 ,command=self.signInSubmit)
+        self.signin_btn.place(x=140, y=240)
 
         self.sign_up_instead = Label(self.root, text="Looking to sign up?", fg="blue",
-                                     bg="light grey", cursor="hand2", font=("Arial", 9, "underline"))
+                                     bg="light grey", cursor="hand2", font=LINK_FONT)
         self.sign_up_instead.place(x=113, y=280)
         self.sign_up_instead.bind("<Button-1>", lambda e: self.signUpInstead())
 

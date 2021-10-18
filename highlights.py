@@ -1,7 +1,9 @@
+from enum import Flag
 from tkinter import *
+from tkinter import font
 from db.database import *
 from highlights_view import HighlightsView
-from properties import HEADER
+from properties import BUTTON_FONT, ERROR_FONT, HEADER, LABEL_FONT, LISTBOX_FONT
 
 
 class Highlights:
@@ -14,7 +16,7 @@ class Highlights:
         self.root.geometry("470x570+570+200")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
-        self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
+        # self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
 
         self.book = book
         self.highlights = self.db.getHighlights(book)
@@ -24,26 +26,25 @@ class Highlights:
         self.h1.place(x=160, y=30)
 
         self.book_highlight = Label(
-            self.root, text="Enter Highlight", bg="light grey")
-        self.book_highlight.place(x=80, y=90)
-        self.book_highlight_input_area = Text(self.root, width=25, height=4)
-        self.book_highlight_input_area.place(x=220, y=90)
+            self.root, text="Enter Highlight", bg="light grey", font=LABEL_FONT)
+        self.book_highlight.place(x=70, y=90)
+        self.book_highlight_input_area = Text(self.root, width=25, height=4, pady=5,padx=5,relief=FLAT,wrap=WORD ,font=LABEL_FONT)
+        self.book_highlight_input_area.place(x=210, y=90)
 
         self.page_no = Label(
-            self.root, text="Enter Page number", bg="light grey")
-        self.page_no.place(x=80, y=180)
-        self.page_no_input_area = Entry(self.root, width=10)
-        self.page_no_input_area.place(x=220, y=180)
+            self.root, text="Enter Page number", bg="light grey", font=LABEL_FONT)
+        self.page_no.place(x=70, y=180)
+        self.page_no_input_area = Entry(self.root, width=10, borderwidth=5,relief=FLAT, font=LABEL_FONT)
+        self.page_no_input_area.place(x=210, y=180)
 
-        self.error_label = Label(self.root, font=(
-            "Arial", 10), fg="red", bg="light grey")
+        self.error_label = Label(self.root, font=ERROR_FONT, fg="red", bg="light grey")
         self.error_label.place(y=210)
 
         self.add_hlt_btn = Button(
-            self.root, text="Add Highlight", command=self.addHighlight).place(x=180, y=240)
+            self.root, text="Add Highlight",padx=8, command=self.addHighlight).place(x=180, y=240)
 
         self.hlts_frame = LabelFrame(self.root, text="Highlights")
-        self.hlts_list = Listbox(self.hlts_frame, width=70, height=12)
+        self.hlts_list = Listbox(self.hlts_frame, width=53,font=LISTBOX_FONT , height=12,borderwidth=5,relief=FLAT)
         self.scrollbar = Scrollbar(self.hlts_frame)
         self.hlts_list.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.hlts_list.yview)
@@ -57,14 +58,14 @@ class Highlights:
         self.button_frame.config(bg="light grey")
         self.button_frame.place(x=170, y=520)
 
-        self.view_hlt_btn = Button(self.button_frame, text='View', padx=10,
+        self.view_hlt_btn = Button(self.button_frame, text='View', padx=10, font = BUTTON_FONT,
                                    command=lambda: self.highlightPopup(self.hlts_list.curselection()))
         self.view_hlt_btn.grid(row=1, column=1)
 
         Label(self.button_frame, text="    ",
               bg="light grey").grid(row=1, column=2)
 
-        self.del_hlt_btn = Button(self.button_frame, text="Delete", padx=10,
+        self.del_hlt_btn = Button(self.button_frame, text="Delete", padx=10, font = BUTTON_FONT,
                                   command=lambda: self.deleteHighlight(self.hlts_list.curselection()))
         self.del_hlt_btn.grid(row=1, column=3)
 
@@ -109,4 +110,4 @@ class Highlights:
 
 
 if __name__ == '__main__':
-    Highlights(3).start()
+    Highlights(2).start()
