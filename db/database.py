@@ -109,6 +109,11 @@ class BookHighlightsDB:
             f"SELECT name FROM users WHERE email_id = ?", (email,))
         return self.cursor.fetchone()[0]
 
+    def updateHighlight(self, new_value, highlight_id):
+        self.cursor.execute(
+            "UPDATE highlights SET highlight = ? WHERE id = ?", (new_value, highlight_id))
+        self.connection.commit()
+
     def __del__(self) -> None:
         self.connection.close()
 
@@ -138,5 +143,7 @@ if __name__ == '__main__':
 
     # print(db.getUserName('javeri.rushabh45@gmail.com'))
     # print(db.getUserName('om@gmail.com'))
+
+    # db.updateHighlight('Best book ever', 3)
 
     # print(db.getBooks(1))

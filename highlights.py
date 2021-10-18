@@ -10,13 +10,14 @@ class Highlights:
     def __init__(self, book):
         self.db = BookHighlightsDB()
 
-        self.root = Tk()
+        self.root = Toplevel()
         self.root.config(bg="#EFC888")
         self.root.title("Resonotes - Highlights")
         self.root.geometry("476x600+570+200")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
-        # self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
+        self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
+
         self.white_frame = Frame(
             self.root, bg="white", width=425, height=550).place(x=25, y=25)
 
@@ -92,7 +93,7 @@ class Highlights:
 
     def highlightPopup(self, selected):
         if selected:
-            HighlightsView(self.highlights[selected[0]]).start()
+            HighlightsView(self.highlights[selected[0]], self.fetchHighlights).start()
 
     def addHighlight(self):
         highlight = self.book_highlight_input_area.get('1.0', END).strip()
@@ -120,4 +121,4 @@ class Highlights:
 
 
 if __name__ == '__main__':
-    Highlights(2).start()
+    Highlights(16).start()

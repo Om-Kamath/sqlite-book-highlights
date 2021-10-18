@@ -1,6 +1,4 @@
-from enum import Flag
 from tkinter import *
-from tkinter import font
 from db.database import *
 from highlights import Highlights
 from properties import BUTTON_FONT, ERROR_FONT, HEADER, LABEL_FONT, LISTBOX_FONT
@@ -121,4 +119,4 @@ class Books:
 
 
 if __name__ == '__main__':
-    Books('om@gmail.com').start()
+    Books('javeri.rushabh45@gmail.com').start()
