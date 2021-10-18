@@ -66,6 +66,7 @@ class SignUp:
         
         self.sign_in_instead.place(x=125, y=360)
         self.sign_in_instead.bind("<Button-1>", lambda e: self.signInInstead())
+        
 
 
     def signInInstead(self):
