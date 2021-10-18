@@ -12,51 +12,61 @@ class SignUp:
         self.db = BookHighlightsDB()
 
         self.root = Tk()
-        self.root.configure(background="light grey")
+        
         self.root.title("Resonotes - Sign Up")
-        self.root.geometry("380x400+550+200")
+        self.root.geometry("380x410+550+200")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
         self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
+        self.root.config(bg="#EFC888")
+
+        self.white_frame = Frame(self.root,bg="white",width=330,height=360).place(x=25,y=25)
 
         self.h1 = Label(self.root, text="RESONOTES",
-                        font=HEADER, bg="light grey")
+                        font=HEADER, bg="white")
         self.h1.place(x=100, y=30)
 
-        self.name = Label(self.root, text="Enter Name", bg="light grey",font=LABEL_FONT)
-        self.name.place(x=20, y=105)
-        self.name_input_area = Entry(self.root, width=23, borderwidth=5,relief=FLAT,font=LABEL_FONT)
-        self.name_input_area.place(x=160, y=100)
+        self.name = Label(self.root, text="Enter Name", bg="white",font=LABEL_FONT)
+        self.name.place(x=30, y=105)
+        self.name_input_area = Entry(self.root, width=21, borderwidth=5,font=LABEL_FONT, relief=FLAT)
+        self.name_input_area.place(x=170, y=100)
         self.name_input_area.focus()
 
-        self.email = Label(self.root, text="Enter Email", bg="light grey",font = LABEL_FONT)
-        self.email.place(x=20, y=145)
-        self.email_input_area = Entry(self.root, width=23, borderwidth=5,relief=FLAT,font = LABEL_FONT)
-        self.email_input_area.place(x=160, y=140)
+        self.email = Label(self.root, text="Enter Email", bg="white",font = LABEL_FONT)
+        self.email.place(x=30, y=145)
+        self.email_input_area = Entry(self.root, width=21, borderwidth=5,font = LABEL_FONT, relief=FLAT)
+        self.email_input_area.place(x=170, y=140)
 
         self.user_pass = Label(
-            self.root, text="Enter Password", bg="light grey",font=LABEL_FONT)
-        self.user_pass.place(x=20, y=185)
-        self.user_pass_input_area = Entry(self.root, width=23, borderwidth=5,relief=FLAT, show='*',font=LABEL_FONT)
-        self.user_pass_input_area.place(x=160, y=180)
+            self.root, text="Enter Password", bg="white",font=LABEL_FONT)
+        self.user_pass.place(x=30, y=185)
+        self.user_pass_input_area = Entry(self.root, width=21, borderwidth=5, show="\u25CF",font=LABEL_FONT, relief=FLAT)
+        self.user_pass_input_area.place(x=170, y=180)
 
         self.user_repass = Label(
-            self.root, text="Re-Enter Password", bg="light grey",font=LABEL_FONT)
-        self.user_repass.place(x=20, y=225)
-        self.user_repass_input_area = Entry(self.root, width=23, show='*', borderwidth=5,relief=FLAT,font=LABEL_FONT)
-        self.user_repass_input_area.place(x=160, y=220)
+            self.root, text="Re-Enter Password", bg="white",font=LABEL_FONT)
+        self.user_repass.place(x=30, y=225)
+        self.user_repass_input_area = Entry(self.root, width=21, show="\u25CF", borderwidth=5,font=LABEL_FONT, relief=FLAT)
+        self.user_repass_input_area.place(x=170, y=220)
 
-        self.error_label = Label(self.root, text="", font=ERROR_FONT, fg="red", bg="light grey", wraplength=300)
-        self.error_label.place(y=260)
+        self.error_label = Label(self.root, text="", font=ERROR_FONT, fg="red", bg="white", wraplength=300)
+        self.error_label.place(x=100,y=260)
 
         self.signin_btn = Button(
-            self.root, text="Sign Up",font= BUTTON_FONT, padx= 8, command=self.signUpSubmit)
-        self.signin_btn.place(x=145, y=320)
+            self.root, text="Sign Up",font= BUTTON_FONT, bg="#CF5C36",fg = "white",  relief=FLAT, padx=12, command=self.signUpSubmit)
+        self.signin_btn.place(x=130, y=310)
 
         self.sign_in_instead = Label(self.root, text="Looking to sign in?", fg="blue",
-                                     bg="light grey", cursor="hand2", font=LINK_FONT)
+                                     bg="white", cursor="hand2", font=LINK_FONT)
+
+        Frame(self.root,width=170,height=2,bg='#141414').place(x=175,y=125)
+        Frame(self.root,width=170,height=2,bg='#141414').place(x=175,y=165)
+        Frame(self.root,width=170,height=2,bg='#141414').place(x=175,y=205)
+        Frame(self.root,width=170,height=2,bg='#141414').place(x=175,y=245)
+        
         self.sign_in_instead.place(x=125, y=360)
         self.sign_in_instead.bind("<Button-1>", lambda e: self.signInInstead())
+
 
     def signInInstead(self):
         self.root.destroy()

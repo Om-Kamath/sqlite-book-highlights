@@ -1,3 +1,4 @@
+from enum import Flag
 from tkinter import *
 from tkinter import font
 from db.database import *
@@ -14,55 +15,59 @@ class Books:
         self.user_id = self.db.getUserID(self.user_email)
 
         self.root = Tk()
-        self.root.configure(background="light grey")
+        self.root.config(bg="#EFC888")
+
         self.root.title("Resonotes - Books")
-        self.root.geometry("480x600+550+100")
+        self.root.geometry("484x630+550+100")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
         self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
+        self.white_frame = Frame(self.root,bg="white",width=433,height=580).place(x=25,y=25)
 
         self.h1 = Label(self.root, text="RESONOTES",
-                        font=HEADER, bg="light grey")
+                        font=HEADER, bg = "white")
         self.h1.place(x=160, y=30)
 
         self.book_title = Label(
-            self.root, text="Enter Book Title", bg="light grey", font=LABEL_FONT)
-        self.book_title.place(x=65, y=90)
-        self.book_title_input_area = Entry(self.root, width=26, borderwidth=5,relief=FLAT, font=LABEL_FONT)
+            self.root, text="Enter Book Title", bg = "white", font=LABEL_FONT)
+        self.book_title.place(x=65, y=95)
+        self.book_title_input_area = Entry(self.root, width=26, borderwidth=5, font=LABEL_FONT,relief=FLAT)
         self.book_title_input_area.place(x=225, y=90)
         self.book_title_input_area.focus()
 
         self.author_name = Label(
-            self.root, text="Enter author name", bg="light grey", font=LABEL_FONT)
-        self.author_name.place(x=65, y=130)
-        self.author_name_input_area = Entry(self.root, width=26, borderwidth=5,relief=FLAT, font=LABEL_FONT)
+            self.root, text="Enter author name", bg = "white", font=LABEL_FONT)
+        self.author_name.place(x=65, y=135)
+        self.author_name_input_area = Entry(self.root, width=26, borderwidth=5, font=LABEL_FONT,relief=FLAT)
         self.author_name_input_area.place(x=225, y=130)
 
-        self.error_label = Label(self.root,font=ERROR_FONT, fg="red", bg="light grey")
-        self.error_label.place(y=170)
+        self.error_label = Label(self.root,font=ERROR_FONT, fg="red", bg = "white")
+        self.error_label.place(x = 100,y=170)
 
         self.add_book_btn = Button(
-            self.root, text="Add Book", font=BUTTON_FONT,padx=8, command=self.add_book)
+            self.root, text="Add Book", font=BUTTON_FONT,bg="#CF5C36",fg = "white",  relief=FLAT, padx=12, command=self.add_book)
         self.add_book_btn.place(x=200, y=200)
 
-        self.books_frame = LabelFrame(self.root, text="Books")
-        self.books_list = Listbox(self.books_frame, width=54, height=12,font=LISTBOX_FONT, borderwidth=5,relief=FLAT)
-        self.scrollbar = Scrollbar(self.books_frame)
+        self.books_frame = LabelFrame(self.root, text="Books", bg="white",relief=FLAT,font=LABEL_FONT)
+        self.books_list = Listbox(self.books_frame, width=50, height=12,font=LISTBOX_FONT, borderwidth=5,relief=FLAT)
+        self.scrollbar = Scrollbar(self.books_frame,bg="white",relief=FLAT)
         self.books_list.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.books_list.yview)
-        self.books_frame.place(x=10, y=250)
+        self.books_frame.place(x=25, y=250)
         self.books_list.grid(row=1, column=1)
         self.scrollbar.grid(row=1, column=2, sticky=NS)
+        Frame(self.root,width=215,height=2,bg='#141414').place(x=225,y=115)
+        Frame(self.root,width=215,height=2,bg='#141414').place(x=225,y=155)
 
         self.fetchBooks()
 
-        self.see_hlt_btn = Button(self.root, font=BUTTON_FONT,padx=8, text="See Highlights",
+        self.see_hlt_btn = Button(self.root, font=BUTTON_FONT,bg="#CF5C36",fg = "white",  relief=FLAT, padx=12, text="See Highlights",
                                   command=lambda: self.seeHighlights(self.books_list.curselection()))
-        self.see_hlt_btn.place(x=180, y=510)
+        self.see_hlt_btn.place(x=180, y=500)
 
-        self.del_book_btn = Button(self.root, text="Delete Book", font=BUTTON_FONT,padx=8, command=lambda: self.deleteSelectedBook(
+        self.del_book_btn = Button(self.root, text="Delete Book", font=BUTTON_FONT,bg="#CF5C36",fg = "white",  relief=FLAT, padx=22, command=lambda: self.deleteSelectedBook(
             self.books_list.curselection()))
-        self.del_book_btn.place(x=187, y=550)
+        self.del_book_btn.place(x=180, y=550)
 
     def seeHighlights(self, selected):
         if selected:
