@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import font
 from db.database import *
 from highlights_view import HighlightsView
-from properties import BUTTON_FONT, ERROR_FONT, HEADER, LABEL_FONT, LISTBOX_FONT
+from properties import BACKGROUND_COLOR, BUTTON_COLOR, BUTTON_FONT, ERROR_FONT, HEADER, LABEL_FONT, LISTBOX_FONT
 
 
 class Highlights:
@@ -11,12 +11,12 @@ class Highlights:
         self.db = BookHighlightsDB()
 
         self.root = Toplevel()
-        self.root.config(bg="#EFC888")
         self.root.title("Resonotes - Highlights")
         self.root.geometry("476x600+570+200")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
         self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
+        self.root.config(bg=BACKGROUND_COLOR)
 
         self.white_frame = Frame(
             self.root, bg="white", width=425, height=550).place(x=25, y=25)
@@ -47,7 +47,7 @@ class Highlights:
         self.error_label.place(x=100, y=210)
 
         self.add_hlt_btn = Button(
-            self.root, text="Add Highlight", font=BUTTON_FONT, bg="#CF5C36", fg="white",  relief=FLAT, padx=12, command=self.addHighlight).place(x=180, y=250)
+            self.root, text="Add Highlight", font=BUTTON_FONT, bg=BUTTON_COLOR, fg="white",  relief=FLAT, padx=12, command=self.addHighlight).place(x=180, y=250)
 
         self.hlts_frame = LabelFrame(
             self.root, text="Highlights", font=LABEL_FONT, relief=FLAT, bg="white")
@@ -66,7 +66,7 @@ class Highlights:
         self.button_frame.config(bg="white")
         self.button_frame.place(x=150, y=530)
 
-        self.view_hlt_btn = Button(self.button_frame, text='View', font=BUTTON_FONT, bg="#CF5C36", fg="white",  relief=FLAT, padx=12,
+        self.view_hlt_btn = Button(self.button_frame, text='View', font=BUTTON_FONT, bg=BUTTON_COLOR, fg="white",  relief=FLAT, padx=12,
                                    command=lambda: self.highlightPopup(self.hlts_list.curselection()))
         self.view_hlt_btn.grid(row=1, column=1)
 
@@ -75,7 +75,7 @@ class Highlights:
         Label(self.button_frame, text="    ",
               bg="white").grid(row=1, column=2)
 
-        self.del_hlt_btn = Button(self.button_frame, text="Delete", bg="#CF5C36", fg="white",  relief=FLAT, padx=12, font=BUTTON_FONT,
+        self.del_hlt_btn = Button(self.button_frame, text="Delete", bg=BUTTON_COLOR, fg="white",  relief=FLAT, padx=12, font=BUTTON_FONT,
                                   command=lambda: self.deleteHighlight(self.hlts_list.curselection()))
         self.del_hlt_btn.grid(row=1, column=3)
 

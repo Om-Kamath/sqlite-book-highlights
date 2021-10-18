@@ -59,6 +59,12 @@ class BookHighlightsDB:
                             (name, email_id, password))
         self.connection.commit()
 
+    def userExists(self, email_id):
+        self.cursor.execute(
+            "SELECT EXISTS(SELECT 1 FROM users WHERE email_id = ?)", (email_id,))
+        exists = self.cursor.fetchone()[0]
+        return exists
+
     def getPassword(self, email_id):
         self.cursor.execute(
             "SELECT password FROM users WHERE email_id = ?", (email_id, ))
@@ -147,3 +153,8 @@ if __name__ == '__main__':
     # db.updateHighlight('Best book ever', 3)
 
     # print(db.getBooks(1))
+
+    # print(db.userExists('javeri.rushabh45@gmail.com'))
+    # print(db.userExists('om@gmail.com'))
+    # print(db.userExists('varun@gmail.com'))
+    # print(db.userExists('hello moto'))
