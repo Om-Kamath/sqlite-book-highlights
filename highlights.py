@@ -17,7 +17,7 @@ class Highlights:
         self.book = book
         self.highlights = self.db.getHighlights(book)
 
-        self.h1 = Label(self.root, text="HighlightR",
+        self.h1 = Label(self.root, text="Resonotes",
                         font=('Arial', 18, 'bold'), bg="light grey")
         self.h1.place(x=170, y=30)
 

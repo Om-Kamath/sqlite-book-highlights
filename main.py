@@ -11,7 +11,7 @@ class Home:
         self.root.geometry("300x225+550+250")
         self.root.resizable(0, 0)
 
-        self.h1 = Label(self.root, text="HighlightR",
+        self.h1 = Label(self.root, text="Resonotes",
                         font=('Arial', 18, 'bold'), bg="light grey")
         self.h1.place(x=87, y=30)
 

@@ -16,7 +16,7 @@ class SignUp:
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
 
-        self.h1 = Label(self.root, text="HighlightR",
+        self.h1 = Label(self.root, text="Resonotes",
                         font=('Arial', 18, 'bold'), bg="light grey")
         self.h1.place(x=110, y=30)
 
