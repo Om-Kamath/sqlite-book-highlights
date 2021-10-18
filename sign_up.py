@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import font
 from properties import BUTTON_FONT, ERROR_FONT, HEADER, LABEL_FONT, LINK_FONT
-from validate import validateName, validateEmail, validatePassword
+from validate import validateFirstName, validateEmail, validatePassword
 from db.database import BookHighlightsDB
 import sign_in
 from books import Books
@@ -26,7 +26,7 @@ class SignUp:
                         font=HEADER, bg="white")
         self.h1.place(x=100, y=30)
 
-        self.name = Label(self.root, text="Enter Name", bg="white",font=LABEL_FONT)
+        self.name = Label(self.root, text="Enter First Name", bg="white",font=LABEL_FONT)
         self.name.place(x=30, y=105)
         self.name_input_area = Entry(self.root, width=21, borderwidth=5,font=LABEL_FONT, relief=FLAT)
         self.name_input_area.place(x=170, y=100)
@@ -80,7 +80,7 @@ class SignUp:
         re_password = self.user_repass_input_area.get().strip()
 
         # TODO: handle state
-        if not validateName(name):
+        if not validateFirstName(name):
             self.error_label.config(
                 text="Name must be min. 2 characters long and must contain alphabets only")
             self.error_label.place(x=40)

@@ -1,9 +1,13 @@
 import re
 
 
-def validateName(name):
-    regex = re.compile(r'^[a-zA-Z\s]{2,}$')
-    return bool(regex.match(name))
+def validateFirstName(first_name):
+    regex = re.compile(r'^[a-zA-Z]{2,}$')
+    return bool(regex.match(first_name))
+
+def validateAuthorName(author_name):
+    regex = re.compile(r'^[a-zA-Z\s\.]{2,}$')
+    return bool(regex.match(author_name))
 
 
 def validateEmail(email):

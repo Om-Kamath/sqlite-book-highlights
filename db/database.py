@@ -104,6 +104,11 @@ class BookHighlightsDB:
             f"SELECT id FROM users WHERE email_id = ?", (email,))
         return self.cursor.fetchone()[0]
 
+    def getUserName(self, email):
+        self.cursor.execute(
+            f"SELECT name FROM users WHERE email_id = ?", (email,))
+        return self.cursor.fetchone()[0]
+
     def __del__(self) -> None:
         self.connection.close()
 
@@ -130,5 +135,8 @@ if __name__ == '__main__':
     # db.addHighlight('Wow awesome', 2, 2)
     # db.addHighlight('Wow superb', 3, 2)
     # db.addHighlight('Wow too good', 17, 2)
+
+    # print(db.getUserName('javeri.rushabh45@gmail.com'))
+    # print(db.getUserName('om@gmail.com'))
 
     # print(db.getBooks(1))
