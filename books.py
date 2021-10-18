@@ -3,6 +3,7 @@ from db.database import *
 from highlights import Highlights
 from properties import BACKGROUND_COLOR, BUTTON_COLOR, BUTTON_FONT, ERROR_FONT, HEADER, LABEL_FONT, LISTBOX_FONT, UNDERLINE_COLOR
 from validate import validateAuthorName, validateBookTitle
+import main
 
 
 class Books:
@@ -15,7 +16,7 @@ class Books:
 
         self.root = Tk()
         self.root.title("Resonotes - Books")
-        self.root.geometry("484x630+550+100")
+        self.root.geometry("484x650+550+100")
         self.root.resizable(0, 0)
         self.root.after(1, lambda: self.root.focus_force())
         self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
@@ -66,6 +67,8 @@ class Books:
         Frame(self.root, width=215, height=2, bg=UNDERLINE_COLOR).place(x=225, y=115)
         Frame(self.root, width=215, height=2, bg=UNDERLINE_COLOR).place(x=225, y=155)
 
+
+
         self.fetchBooks()
 
         self.see_hlt_btn = Button(self.root, font=BUTTON_FONT, bg=BUTTON_COLOR, fg="white",  relief=FLAT, padx=12, text="See Highlights",
@@ -75,6 +78,17 @@ class Books:
         self.del_book_btn = Button(self.root, text="Delete Book", font=BUTTON_FONT, bg=BUTTON_COLOR, fg="white",  relief=FLAT, padx=22, command=lambda: self.deleteSelectedBook(
             self.books_list.curselection()))
         self.del_book_btn.place(x=180, y=550)
+
+        self.menu_bar = Menu(self.root)
+        self.option_list = Menu(self.menu_bar,tearoff=0)
+        self.option_list.add_command(label="Log Out",command=self.logout)
+        self.option_list.add_command(label="Exit",command=self.root.destroy)
+        self.menu_bar.add_cascade(label="Options",menu=self.option_list,font=LABEL_FONT)
+        self.root.config(menu=self.menu_bar)
+
+    def logout(self):
+        self.root.destroy()
+        main.Home().start()
 
     def seeHighlights(self, selected):
         if selected:
@@ -118,4 +132,4 @@ class Books:
 
 
 if __name__ == '__main__':
-    Books('javeri.rushabh45@gmail.com').start()
+    Books('drumil.kotecha@nmims.edu').start()
