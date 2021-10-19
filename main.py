@@ -31,6 +31,8 @@ class Home:
     def start(self):
         self.root.mainloop()
 
+    
+
 
 if __name__ == '__main__':
     Home().start()

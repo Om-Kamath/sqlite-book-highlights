@@ -130,6 +130,3 @@ class Books:
             self.db.deleteBook(self.books[selected[0]][0])
             self.fetchBooks()
 
-
-if __name__ == '__main__':
-    Books('drumil.kotecha@nmims.edu').start()

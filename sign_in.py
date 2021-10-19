@@ -49,6 +49,7 @@ class SignIn:
         self.signin_btn = Button(
             self.root, text="Sign In", font=BUTTON_FONT, bg=BUTTON_COLOR, fg="white", relief=FLAT, padx=12, command=self.signInSubmit)
         self.signin_btn.place(x=120, y=230)
+        self.root.bind('<Return>',self.callback)
 
         self.sign_up_instead = Label(self.root, text="Looking to sign up?", fg="blue",
                                      bg="white", cursor="hand2", font=LINK_FONT)
@@ -61,6 +62,9 @@ class SignIn:
     def signUpInstead(self):
         self.root.destroy()
         sign_up.SignUp().start()
+
+    def callback(self,event):
+        self.signInSubmit()
 
     def signInSubmit(self):
         email = self.email_input_area.get()
@@ -81,7 +85,3 @@ class SignIn:
 
     def start(self):
         self.root.mainloop()
-
-
-if __name__ == '__main__':
-    SignIn().start()

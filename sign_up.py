@@ -114,7 +114,3 @@ class SignUp:
 
     def start(self):
         self.root.mainloop()
-
-
-if __name__ == '__main__':
-    SignUp().start()

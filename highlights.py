@@ -120,5 +120,3 @@ class Highlights:
         self.root.mainloop()
 
 
-if __name__ == '__main__':
-    Highlights(16).start()
