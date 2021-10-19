@@ -1,7 +1,7 @@
 from tkinter import *
 from properties import HEADER, MAIN_BUTTON_FONT, BACKGROUND_COLOR, BUTTON_COLOR
-from sign_in import SignIn
-from sign_up import SignUp
+import sign_in 
+import sign_up
 
 
 class Home:
@@ -20,12 +20,12 @@ class Home:
 
         self.signin_btn = Button(
             self.root, text="Sign In", font=MAIN_BUTTON_FONT, bg=BUTTON_COLOR, fg="white", relief=FLAT, padx=12,
-            command=lambda: [self.root.destroy(), SignIn().start()])
+            command=lambda: [self.root.destroy(), sign_in.SignIn().start()])
         self.signin_btn.place(x=100, y=110)
 
         self.signup_btn = Button(
             self.root, text="Sign Up", font=MAIN_BUTTON_FONT, padx=10, bg=BUTTON_COLOR, fg="white", relief=FLAT,
-            command=lambda: [self.root.destroy(), SignUp().start()])
+            command=lambda: [self.root.destroy(), sign_up.SignUp().start()])
         self.signup_btn.place(x=100, y=170)
 
     def start(self):

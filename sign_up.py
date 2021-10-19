@@ -4,7 +4,7 @@ from properties import BACKGROUND_COLOR, BUTTON_COLOR, BUTTON_FONT, ERROR_FONT, 
 from validate import validateFirstName, validateEmail, validatePassword
 from db.database import BookHighlightsDB
 import sign_in
-from books import Books
+import books
 
 
 class SignUp:
@@ -110,7 +110,7 @@ class SignUp:
             self.db.addUser(name, email, password)
             email = self.email_input_area.get()
             self.root.destroy()
-            Books(email).start()
+            books.Books(email).start()
 
     def start(self):
         self.root.mainloop()
