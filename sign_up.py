@@ -67,6 +67,8 @@ class SignUp:
         self.sign_in_instead = Label(self.root, text="Looking to sign in?", fg="blue",
                                      bg="white", cursor="hand2", font=LINK_FONT)
 
+        self.root.bind('<Return>',self.callback)
+
         Frame(self.root, width=170, height=2,
               bg=UNDERLINE_COLOR).place(x=175, y=125)
         Frame(self.root, width=170, height=2,
@@ -82,6 +84,9 @@ class SignUp:
     def signInInstead(self):
         self.root.destroy()
         sign_in.SignIn().start()
+
+    def callback(self,event):
+            self.signUpSubmit()
 
     def signUpSubmit(self):
         name = self.name_input_area.get().strip()
