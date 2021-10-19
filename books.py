@@ -51,8 +51,9 @@ class Books:
         self.error_label.place(x=-20, y=170)
 
         self.add_book_btn = Button(
-            self.root, text="Add Book", font=BUTTON_FONT, bg=BUTTON_COLOR, fg="white",  relief=FLAT, padx=12, command=self.add_book)
+            self.root, text="Add Book", font=BUTTON_FONT, bg=BUTTON_COLOR, fg="white",  relief=FLAT, padx=12, command=self.addBook)
         self.add_book_btn.place(x=200, y=200)
+        self.root.bind('<Return>', self.callback)
 
         self.books_frame = LabelFrame(
             self.root, text="Books", bg="white", relief=FLAT, font=LABEL_FONT)
@@ -64,10 +65,10 @@ class Books:
         self.books_frame.place(x=25, y=250)
         self.books_list.grid(row=1, column=1)
         self.scrollbar.grid(row=1, column=2, sticky=NS)
-        Frame(self.root, width=215, height=2, bg=UNDERLINE_COLOR).place(x=225, y=115)
-        Frame(self.root, width=215, height=2, bg=UNDERLINE_COLOR).place(x=225, y=155)
-
-
+        Frame(self.root, width=215, height=2,
+              bg=UNDERLINE_COLOR).place(x=225, y=115)
+        Frame(self.root, width=215, height=2,
+              bg=UNDERLINE_COLOR).place(x=225, y=155)
 
         self.fetchBooks()
 
@@ -80,10 +81,11 @@ class Books:
         self.del_book_btn.place(x=180, y=550)
 
         self.menu_bar = Menu(self.root)
-        self.option_list = Menu(self.menu_bar,tearoff=0)
-        self.option_list.add_command(label="Log Out",command=self.logout)
-        self.option_list.add_command(label="Exit",command=self.root.destroy)
-        self.menu_bar.add_cascade(label="Options",menu=self.option_list,font=LABEL_FONT)
+        self.option_list = Menu(self.menu_bar, tearoff=0)
+        self.option_list.add_command(label="Log Out", command=self.logout)
+        self.option_list.add_command(label="Exit", command=self.root.destroy)
+        self.menu_bar.add_cascade(
+            label="Options", menu=self.option_list, font=LABEL_FONT)
         self.root.config(menu=self.menu_bar)
 
     def logout(self):
@@ -102,7 +104,7 @@ class Books:
             self.books_list.insert(
                 END, str(index + 1) + ". " + book[1] + " - " + book[2])
 
-    def add_book(self):
+    def addBook(self):
         author = self.author_name_input_area.get().strip().title()
         title = self.book_title_input_area.get().strip()
 
@@ -121,6 +123,10 @@ class Books:
             self.book_title_input_area.delete(0, END)
             self.author_name_input_area.delete(0, END)
             self.fetchBooks()
+            self.book_title_input_area.focus()
+
+    def callback(self, event):
+        self.addBook()
 
     def start(self):
         self.root.mainloop()
@@ -129,4 +135,3 @@ class Books:
         if selected:
             self.db.deleteBook(self.books[selected[0]][0])
             self.fetchBooks()
-

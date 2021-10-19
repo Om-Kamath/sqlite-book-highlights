@@ -49,7 +49,7 @@ class SignIn:
         self.signin_btn = Button(
             self.root, text="Sign In", font=BUTTON_FONT, bg=BUTTON_COLOR, fg="white", relief=FLAT, padx=12, command=self.signInSubmit)
         self.signin_btn.place(x=120, y=230)
-        self.root.bind('<Return>',self.callback)
+        self.root.bind('<Return>', self.callback)
 
         self.sign_up_instead = Label(self.root, text="Looking to sign up?", fg="blue",
                                      bg="white", cursor="hand2", font=LINK_FONT)
@@ -63,7 +63,7 @@ class SignIn:
         self.root.destroy()
         sign_up.SignUp().start()
 
-    def callback(self,event):
+    def callback(self, event):
         self.signInSubmit()
 
     def signInSubmit(self):
@@ -73,7 +73,7 @@ class SignIn:
 
         if expected_password is None:
             self.error_label.config(text="Could not find user!")
-            self.error_label.place(x=110)
+            self.error_label.place(x=105)
         else:
             if expected_password == password:
                 email = self.email_input_area.get()
@@ -81,7 +81,7 @@ class SignIn:
                 Books(email).start()
             else:
                 self.error_label.config(text="Incorrect Password!")
-                self.error_label.place(x=115)
+                self.error_label.place(x=100)
 
     def start(self):
         self.root.mainloop()

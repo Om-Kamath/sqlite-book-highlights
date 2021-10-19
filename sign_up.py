@@ -97,11 +97,11 @@ class SignUp:
         if self.db.userExists(email):
             self.error_label.config(
                 text="An account with this email already exists!")
-            self.error_label.place(x=55)
+            self.error_label.place(x=58)
         elif not validateFirstName(name):
             self.error_label.config(
                 text="Name must be min. 2 characters long and must contain alphabets only")
-            self.error_label.place(x=40)
+            self.error_label.place(x=42)
         elif not validateEmail(email):
             self.error_label.config(text="Invalid email!")
             self.error_label.place(x=140)
@@ -109,8 +109,8 @@ class SignUp:
             self.error_label.config(text="Weak password!")
             self.error_label.place(x=130)
         elif password != re_password:
-            self.error_label.config(text="Passwords don't match")
-            self.error_label.place(x=105)
+            self.error_label.config(text="Passwords don't match!")
+            self.error_label.place(x=106)
         else:
             self.db.addUser(name, email, password)
             email = self.email_input_area.get()

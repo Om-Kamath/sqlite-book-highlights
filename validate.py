@@ -5,6 +5,7 @@ def validateFirstName(first_name):
     regex = re.compile(r'^[a-zA-Z]{2,}$')
     return bool(regex.match(first_name))
 
+
 def validateAuthorName(author_name):
     regex = re.compile(r'^[a-zA-Z\s\.]{2,}$')
     return bool(regex.match(author_name))
@@ -12,7 +13,7 @@ def validateAuthorName(author_name):
 
 def validateEmail(email):
     regex = re.compile(
-        r'^[a-zA-Z_.0-9]+[@]\w+[.]{1,1}(com|edu|in|us|edu\.in|org)$')
+        r'^[a-zA-Z_.0-9]+[@]\w+\.(com|edu|in|us|edu\.in|org)$')
     return bool(regex.match(email))
 
 
@@ -29,5 +30,5 @@ def validatePassword(password):
 
 
 def validateBookTitle(name):
-    regex = re.compile(r'^[A-Za-z0-9\s\-_,\.;:()+*%$]{2,}$')
+    regex = re.compile(r'^[A-Za-z0-9\s\-_,\.;:()+*%$\'"]{2,}$')
     return bool(regex.match(name))

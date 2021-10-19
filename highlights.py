@@ -93,7 +93,8 @@ class Highlights:
 
     def highlightPopup(self, selected):
         if selected:
-            HighlightsView(self.highlights[selected[0]], self.fetchHighlights).start()
+            HighlightsView(
+                self.highlights[selected[0]], self.fetchHighlights).start()
 
     def addHighlight(self):
         highlight = self.book_highlight_input_area.get('1.0', END).strip()
@@ -102,13 +103,18 @@ class Highlights:
         if highlight == '' or page_no == '':
             self.error_label.config(text="Both fields compulsory!")
             self.error_label.place(x=170)
-        elif not page_no.isdigit():
+        elif page_no.isdigit():
             self.error_label.config(text="Page number must be a number!")
-            self.error_label.place(x=155)
+            self.error_label.place(x=140)
+        elif int(page_no) < 1:
+            self.error_label.config(text="Page number must be a positive number!")
+            self.error_label.place(x=125)
         else:
             self.error_label.config(text="")
             self.db.addHighlight(highlight=highlight,
                                  page=page_no, book=self.book)
+            self.book_highlight_input_area.delete('1.0', END)
+            self.page_no_input_area.delete(0, END)
             self.fetchHighlights()
 
     def deleteHighlight(self, selected):
@@ -118,5 +124,3 @@ class Highlights:
 
     def start(self):
         self.root.mainloop()
-
-
