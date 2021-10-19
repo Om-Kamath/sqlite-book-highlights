@@ -103,7 +103,7 @@ class Highlights:
         if highlight == '' or page_no == '':
             self.error_label.config(text="Both fields compulsory!")
             self.error_label.place(x=170)
-        elif page_no.isdigit():
+        elif not page_no.isdigit():
             self.error_label.config(text="Page number must be a number!")
             self.error_label.place(x=140)
         elif int(page_no) < 1:
