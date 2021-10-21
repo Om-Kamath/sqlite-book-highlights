@@ -13,7 +13,7 @@ class Home:
         self.root.config(bg=BACKGROUND_COLOR)
         self.root.iconphoto(False, PhotoImage(file='icons/logo.png'))
 
-        Frame(self.root, width=250, height=250, bg="").place(x=25, y=25)
+        Frame(self.root, width=250, height=250, bg="white").place(x=25, y=25)
         self.h1 = Label(self.root, text="RESONOTES",
                         font=HEADER, bg='white')
         self.h1.place(x=70, y=30)
