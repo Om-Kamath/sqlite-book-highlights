@@ -30,5 +30,5 @@ def validatePassword(password):
 
 
 def validateBookTitle(name):
-    regex = re.compile(r'^[A-Za-z0-9\s\-_,\.;:()+*%$\'"]{2,}$')
+    regex = re.compile(r'^[A-Za-z0-9\s\-_,\.;:()+*%$\'!"]{2,}$')
     return bool(regex.match(name))
